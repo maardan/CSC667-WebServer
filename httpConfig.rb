@@ -1,19 +1,18 @@
-require_relative 'configFile.rb'
+require_relative 'configFile'
 
 class HttpConfig < ConfigFile
   attr_reader :config
 
-  def initialize 
-    
-  end 
-  def process_line
-  end 
+	def initialize(config_file)
+	    super(config_file)
+	end  # def process_line
+  # end 
 
-  def listen
+  # def listen
     
-  end
+  # end
 
-  def document_root
+  # def document_root
     
-  end
+  # end
 end 
