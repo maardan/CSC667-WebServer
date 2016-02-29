@@ -12,11 +12,12 @@ class Request
     # print "request: ", request
     
     # request_parse = request.split(" ")
-    # path, query = fullpath[1].split("?")
+    path, query = request_parse[1].split("?")    
     
-    # @method = request_parse[0]
-    # @uri = request_parse[1]
-    # @version = request_parse[2]
+    @verb    = request_line[0]
+    @uri     = request_line[1]
+    @query   = query
+    @version = request_line[2]
     @headers = Hash.new
     # @body = "body"
     

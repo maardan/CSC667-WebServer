@@ -1,21 +1,32 @@
 class ConfigFile
-  	attr_reader :line
+  attr_reader :lines, :config, :mime_types
 
-	def initialize(new_config)
+  def initialize(str)
+    @lines=str
+  end
 
-	    @config_array = new_config
-	end
+  def load()
+    parsedData = Hash.new()
+    @lines.each_line do |line|
+      if self.valid_line?(line)
+        lineSplit=line.split(' ', 2) 
+        parsedData[lineSplit[0]] = self.remove_quotes(lineSplit[1])
+      end
+    end
+    return parsedData
+  end
 
-	def process_line()
+  def valid_line?(line)
+    if line.tr(' ', '').start_with? '#' or 
+      line.start_with? "\n" or
+      line.split.length == 0
+      return false
+    end
+    return true
+  end
 
-		@config_hash = {}
-
-		@config_array.each do |key_value_pair|
-			key , value = key_value_pair.split(" ")
-			@config_hash[key.to_sym] = value
-		end
-
-		@config_hash
-	end
+  def remove_quotes(str)
+    return str.tr('"',"")
+  end
 
 end

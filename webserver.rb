@@ -1,8 +1,8 @@
 require 'socket'
 require_relative 'request'
 require_relative 'response'
-require_relative 'httpConfig'
-require_relative 'mimeType'
+# require_relative 'httpConfig'
+# require_relative 'mimeType'
 
 class WebServer
   attr_reader :options
@@ -20,8 +20,8 @@ class WebServer
 
   def start
 
-    @httpd_config = HttpConfig.new(read_config_file("httpd.conf"))
-    @mime_types = MimeType.new(read_config_file("mime_types.conf"))
+    # @httpd_config = HttpConfig.new(read_config_file("httpd.conf"))
+    # @mime_types = MimeType.new(read_config_file("mime.types"))
 
     server = TCPServer.open @options 
 
@@ -46,16 +46,16 @@ class WebServer
   #   @server ||= TCPServer.open(options.fetch(:options, DEFAULT_PORT))
   # end
 
-  private def read_config_file(config_file)
+  # private def read_config_file(config_file)
 
-    config_path = "config/" << config_file
+  #   config_path = "config/" << config_file
 
-    config_array = Array.new
-    File::open(config_path, "r") do |file|
-        file.each do |line|
-            config_array.push line
-        end
-    end
-    config_array 
-  end        
+  #   config_array = Array.new
+  #   File::open(config_path, "r") do |file|
+  #       file.each do |line|
+  #           config_array.push line
+  #       end
+  #   end
+  #   config_array 
+  # end        
 end
